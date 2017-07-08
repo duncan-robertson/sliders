@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta viewport="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css" media="screen, projection">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <script>
+        /*global $*/
+        
+        function prepSlider(divID) {
+            if(divID && (typeof(divID) == 'string')) {
+                if (divID[0] != '#') {
+                    divID = '#' + divID;
+                }
+                
+                $(divID + ' .slider-head .slider-button').on('click', (event) => {
+                    var sliderContent = $(divID + ' .slider-content');
+                    var minHeight = sliderContent.css("min-height");
+                    var originHeight = sliderContent.height() + 'px';
+                    
+                    Promise.resolve()
+                    .then( () => {
+                        if(originHeight == minHeight) {
+                            sliderContent.css('height', minHeight);
+                        }
+                    }).then( () => {
+                        sliderContent.css("min-height", 0)
+                        .slideToggle("fast", () => {
+                            sliderContent.css('min-height', minHeight);
+                            sliderContent.height('auto');
+                        });
+                    }).catch( (err) => {
+                       if(err){
+                           console.log('Error toggling slider\n' + err);
+                       } 
+                    });
+                    
+                });
+            }
+        }
+        
+        function setup() {
+            $('#slider2 .slider-content').toggle();
+            prepSlider('slider1');
+            prepSlider('slider2');
+        }
+        </script>
+    </head>
+    
+    <body onload="setup();">
+        <div id="page">
+            <div class="slider" id="slider1">
+                <div class="slider-head">
+                    <button class="slider-button">+</button>
+                    <span>My Slider</span>
+                </div
+                ><div class="slider-content">
+                    <p>This is my slider content. It seems nice.</p>
+                </div>
+            </div>
+            <br>
+            <div class="slider" id="slider2">
+                <div class="slider-head">
+                    <button class="slider-button">+</button>
+                    <span>My Slider</span>
+                </div
+                ><div class="slider-content">
+                    <p>This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.
+                    This is my slider content. It seems nice.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
